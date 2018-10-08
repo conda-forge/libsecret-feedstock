@@ -14,7 +14,7 @@ source:
     - 0001-Disable-tests-which-require-additional-deps.patch
 
 build:
-  number: 0
+  number: 1000
   skip: True  # [win]
   run_exports:
     #  https://abi-laboratory.pro/tracker/timeline/libsecret/
