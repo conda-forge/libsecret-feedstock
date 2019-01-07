@@ -12,6 +12,7 @@ source:
   sha256: {{ sha256 }}
   patches:
     - 0001-Disable-tests-which-require-additional-deps.patch
+    - 0002-Fix-hard-coded-shebang-in-tap-scripts.patch
 
 build:
   number: 0
