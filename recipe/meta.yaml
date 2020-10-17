@@ -15,7 +15,7 @@ source:
     - 0002-Fix-hard-coded-shebang-in-tap-scripts.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   run_exports:
     #  https://abi-laboratory.pro/tracker/timeline/libsecret/
