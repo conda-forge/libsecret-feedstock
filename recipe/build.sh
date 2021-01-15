@@ -5,6 +5,6 @@
     --with-libgcrypt-prefix="$PREFIX"
 
 # Requires python-dbus and some other stuff
-make check
+# make check
 
 make install
