@@ -11,7 +11,7 @@ channel_targets:
 docker_image:
 - quay.io/condaforge/linux-anvil-comp7
 glib:
-- '2.66'
+- '2'
 perl:
 - 5.26.2
 pin_run_as_build:
