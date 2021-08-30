@@ -30,6 +30,7 @@ requirements:
     - sed  # [osx]
     - perl
     - python
+    - make
   host:
     - glib
     - libgcrypt
