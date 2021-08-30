@@ -28,7 +28,7 @@ requirements:
     - pkg-config
     - sed  # [osx]
     - perl
-    - python 2.7
+    - python
   host:
     - glib
     - libgcrypt
