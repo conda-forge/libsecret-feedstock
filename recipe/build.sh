@@ -2,7 +2,7 @@
 
 ./configure --prefix="$PREFIX" \
     --disable-manpages \
-    --with-libgcrypt-prefix="$PREFIX"
+    --with-libgcrypt-prefix="$PREFIX" || cat config.log
 
 # Requires python-dbus and some other stuff
 # make check
