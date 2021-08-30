@@ -26,9 +26,11 @@ requirements:
     - {{ compiler('c') }}
     - intltool
     - pkg-config
+    - libtool
     - sed  # [osx]
     - perl
-    - python 2.7
+    - python
+    - make
   host:
     - glib
     - libgcrypt
