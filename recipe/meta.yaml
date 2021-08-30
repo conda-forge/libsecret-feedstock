@@ -26,6 +26,7 @@ requirements:
     - {{ compiler('c') }}
     - intltool
     - pkg-config
+    - libtool
     - sed  # [osx]
     - perl
     - python
