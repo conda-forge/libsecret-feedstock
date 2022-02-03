@@ -23,6 +23,7 @@ build:
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - intltool
     - pkg-config
@@ -40,8 +41,6 @@ test:
   commands:
     - test -f $PREFIX/lib/libsecret-1$SHLIB_EXT
     - test -f $PREFIX/lib/pkgconfig/libsecret-1.pc
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: https://wiki.gnome.org/Projects/Libsecret
