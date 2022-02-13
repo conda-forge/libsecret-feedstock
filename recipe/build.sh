@@ -9,5 +9,4 @@ cp $BUILD_PREFIX/share/gnuconfig/config.* ./build
 # Requires python-dbus and some other stuff
 # make check
 
-# Conda-forge libtool is patched to honor -Wl,--as-needed
-make install LIBTOOL=$BUILD_PREFIX/bin/libtool -j${CPU_COUNT}
+make install -j${CPU_COUNT}
