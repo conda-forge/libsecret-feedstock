@@ -1,5 +1,8 @@
 {% set name = "libsecret" %}
-{% set version = "0.18.8" %}
+{% set major = "0" %}
+{% set minor = "18" %}
+{% set patch = "8" %}
+{% set version = major ~ '.' ~ minor ~ '.' ~ patch %}
 {% set sha256 = "3bfa889d260e0dbabcf5b9967f2aae12edcd2ddc9adc365de7a5cc840c311d15" %}
 
 package:
@@ -8,11 +11,12 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/0.18/libsecret-{{ version }}.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ major }}.{{ minor }}/libsecret-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
     - 0001-Disable-tests-which-require-additional-deps.patch
     - 0002-Fix-hard-coded-shebang-in-tap-scripts.patch
+    - 0003-Add-patch-for-making-libtool-honor-Wl-as-needed.patch
 
 build:
   number: 1
@@ -23,10 +27,10 @@ build:
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - intltool
     - pkg-config
-    - libtool
     - sed  # [osx]
     - perl
     - python
@@ -34,14 +38,13 @@ requirements:
   host:
     - glib
     - libgcrypt
+    - gettext  # [osx]
 
 
 test:
   commands:
     - test -f $PREFIX/lib/libsecret-1$SHLIB_EXT
     - test -f $PREFIX/lib/pkgconfig/libsecret-1.pc
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: https://wiki.gnome.org/Projects/Libsecret
