@@ -19,7 +19,7 @@ source:
     - 0003-Add-patch-for-making-libtool-honor-Wl-as-needed.patch
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win]
   run_exports:
     #  https://abi-laboratory.pro/tracker/timeline/libsecret/
@@ -33,10 +33,10 @@ requirements:
     - pkg-config
     - sed  # [osx]
     - perl
-    - python
     - make
   host:
     - glib
+    - gobject-introspection
     - libgcrypt
     - gettext  # [osx]
 
@@ -45,10 +45,11 @@ test:
   commands:
     - test -f $PREFIX/lib/libsecret-1$SHLIB_EXT
     - test -f $PREFIX/lib/pkgconfig/libsecret-1.pc
+    - test -f $PREFIX/lib/girepository-1.0/Secret-1.typelib
 
 about:
   home: https://wiki.gnome.org/Projects/Libsecret
-  license: LGPL-2.1
+  license: LGPL-2.1-or-later
   license_family: LGPL
   license_file: COPYING
   summary: 'GObject based library for accessing the Secret Service API.'

@@ -4,6 +4,7 @@ cp $BUILD_PREFIX/share/gnuconfig/config.* ./build
 
 ./configure --prefix="$PREFIX" \
     --disable-manpages \
+    --enable-introspection \
     --with-libgcrypt-prefix="$PREFIX" || cat config.log
 
 # Requires python-dbus and some other stuff
