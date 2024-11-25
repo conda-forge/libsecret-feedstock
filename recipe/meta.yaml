@@ -8,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ version | split('.')[:-1] | join('.') }}/libsecret-{{ version }}.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/0.18/libsecret-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
     - 0001-Disable-tests-which-require-additional-deps.patch
