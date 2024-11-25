@@ -1,8 +1,5 @@
 {% set name = "libsecret" %}
-{% set major = "0" %}
-{% set minor = "18" %}
-{% set patch = "8" %}
-{% set version = major ~ '.' ~ minor ~ '.' ~ patch %}
+{% set version = "0.18.8" %}
 {% set sha256 = "3bfa889d260e0dbabcf5b9967f2aae12edcd2ddc9adc365de7a5cc840c311d15" %}
 
 package:
@@ -11,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ major }}.{{ minor }}/libsecret-{{ version }}.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ version | split('.')[:-1] | join('.') }}/libsecret-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
     - 0001-Disable-tests-which-require-additional-deps.patch
@@ -29,6 +26,7 @@ requirements:
   build:
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - intltool
     - pkg-config
     - sed  # [osx]
