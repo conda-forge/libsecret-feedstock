@@ -19,7 +19,7 @@ source:
     - 0003-Add-patch-for-making-libtool-honor-Wl-as-needed.patch
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   run_exports:
     #  https://abi-laboratory.pro/tracker/timeline/libsecret/
