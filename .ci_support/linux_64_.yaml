@@ -18,7 +18,5 @@ glib:
 - '2'
 libsecret:
 - '0.18'
-perl:
-- 5.32.1
 target_platform:
 - linux-64
