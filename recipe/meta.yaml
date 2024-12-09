@@ -8,10 +8,6 @@ package:
 source:
   url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ '.'.join(version.split('.')[:2]) }}/libsecret-{{ version }}.tar.xz
   sha256: 163d08d783be6d4ab9a979ceb5a4fecbc1d9660d3c34168c581301cd53912b20
-  patches:
-    - 0001-Disable-tests-which-require-additional-deps.patch
-    - 0002-Fix-hard-coded-shebang-in-tap-scripts.patch
-    - 0003-Add-patch-for-making-libtool-honor-Wl-as-needed.patch
 
 build:
   number: 0
