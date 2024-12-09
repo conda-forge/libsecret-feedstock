@@ -1,22 +1,20 @@
 {% set name = "libsecret" %}
-{% set version = "0.18.8" %}
-{% set sha256 = "3bfa889d260e0dbabcf5b9967f2aae12edcd2ddc9adc365de7a5cc840c311d15" %}
+{% set version = "0.21.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/0.18/libsecret-{{ version }}.tar.xz
-  sha256: {{ sha256 }}
+  url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ '.'.join(version.split('.')[:2]) }}/libsecret-{{ version }}.tar.xz
+  sha256: 163d08d783be6d4ab9a979ceb5a4fecbc1d9660d3c34168c581301cd53912b20
   patches:
     - 0001-Disable-tests-which-require-additional-deps.patch
     - 0002-Fix-hard-coded-shebang-in-tap-scripts.patch
     - 0003-Add-patch-for-making-libtool-honor-Wl-as-needed.patch
 
 build:
-  number: 3
+  number: 0
   skip: True  # [win]
   run_exports:
     #  https://abi-laboratory.pro/tracker/timeline/libsecret/
@@ -24,20 +22,18 @@ build:
 
 requirements:
   build:
-    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    - intltool
     - pkg-config
-    - sed  # [osx]
-    - perl
-    - make
+    - gettext-tools
+    - meson
+    - ninja
+    - vala
   host:
     - glib
     - gobject-introspection
     - libgcrypt
-    - gettext  # [osx]
-
+    - libintl-devel  # [osx]
 
 test:
   commands:
@@ -62,3 +58,4 @@ about:
 extra:
   recipe-maintainers:
     - nehaljwani
+    - pavelzw
