@@ -30,6 +30,7 @@ requirements:
     - gobject-introspection
     - libgcrypt
     - libintl-devel  # [osx]
+    - zlib
 
 test:
   commands:
