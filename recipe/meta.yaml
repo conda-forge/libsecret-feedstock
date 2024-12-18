@@ -8,6 +8,9 @@ package:
 source:
   url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ '.'.join(version.split('.')[:2]) }}/libsecret-{{ version }}.tar.xz
   sha256: 163d08d783be6d4ab9a979ceb5a4fecbc1d9660d3c34168c581301cd53912b20
+  patches:
+    # Disable test-only introspection data, doesn't build on osx.
+    - 0001-Disable-mock_service-introspection.patch
 
 build:
   number: 0
