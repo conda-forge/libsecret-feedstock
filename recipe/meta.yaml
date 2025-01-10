@@ -28,6 +28,7 @@ requirements:
     - meson
     - ninja
     - vala
+    - glib  # [build_platform != target_platform]
   host:
     - glib
     - gobject-introspection
