@@ -27,8 +27,12 @@ requirements:
     - gettext-tools
     - meson
     - ninja
+    - sed
     - vala
-    - glib  # [build_platform != target_platform]
+    - glib                   # [build_platform != target_platform]
+    - g-ir-build-tools       # [build_platform != target_platform]
+    - libgcrypt              # [build_platform != target_platform]
+    - gobject-introspection  # [build_platform != target_platform]
   host:
     - glib
     - gobject-introspection
