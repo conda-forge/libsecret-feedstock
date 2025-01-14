@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == "1" ]]; then
   sed -i "/\[binaries\]/a\g-ir-scanner = '${BUILD_PREFIX}/bin/g-ir-scanner'" ${BUILD_PREFIX}/meson_cross_file.txt
   sed -i "/\[binaries\]/a\g-ir-compiler = '${BUILD_PREFIX}/bin/g-ir-compiler'" ${BUILD_PREFIX}/meson_cross_file.txt
   sed -i "/\[binaries\]/a\glib-mkenums = '${BUILD_PREFIX}/bin/glib-mkenums'" ${BUILD_PREFIX}/meson_cross_file.txt
