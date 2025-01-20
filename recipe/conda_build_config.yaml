@@ -1,2 +1,0 @@
-perl:       # [linux and (ppc64le or aarch64)]
-  - 5.32.1  # [linux and (ppc64le or aarch64)]
