@@ -1,5 +1,5 @@
 {% set name = "libsecret" %}
-{% set version = "0.21.6" %}
+{% set version = "0.21.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: http://ftp.gnome.org/pub/gnome/sources/libsecret/{{ '.'.join(version.split('.')[:2]) }}/libsecret-{{ version }}.tar.xz
-  sha256: 747b8c175be108c880d3adfb9c3537ea66e520e4ad2dccf5dce58003aeeca090
+  sha256: 6b452e4750590a2b5617adc40026f28d2f4903de15f1250e1d1c40bfd68ed55e
   patches:
     # Disable test-only introspection data, doesn't build on osx.
     - 0001-Disable-mock_service-introspection.patch
