@@ -4,8 +4,15 @@ set -euxo pipefail
 
 # vala 0.56.17 (latest on conda-forge) can't parse the <doc:format/> element that
 # gobject-introspection >=1.86 writes into .gir files, so vapigen fails.
-# Build the .gir first, drop that purely informational element, then build the rest.
+# Drop that purely informational element from the dependencies' .gir files and from
+# our own (built first), then build the rest.
 # Remove once vala >=0.56.19 is available.
+for girdir in "$PREFIX/share/gir-1.0" "$BUILD_PREFIX/share/gir-1.0"; do
+  if [[ -d "$girdir" ]]; then
+    find "$girdir" -name '*.gir' -exec sed -i.bak '/<doc:format /d' {} +
+    find "$girdir" -name '*.gir.bak' -delete
+  fi
+done
 build_with_vala_workaround() {
   ninja -C "$1" -j${CPU_COUNT} libsecret/Secret-1.gir
   sed -i.bak '/<doc:format /d' "$1/libsecret/Secret-1.gir"
