@@ -29,6 +29,8 @@ requirements:
     - ninja
     - sed
     - vala
+    # g-ir-scanner imports distutils, which setuptools 84 no longer provides
+    - setuptools <84
     - glib                   # [build_platform != target_platform]
     - g-ir-build-tools       # [build_platform != target_platform]
     - libgcrypt              # [build_platform != target_platform]
@@ -36,6 +38,7 @@ requirements:
   host:
     - glib
     - gobject-introspection
+    - setuptools <84  # see build section
     - libgcrypt
     - libintl-devel  # [osx]
     - zlib

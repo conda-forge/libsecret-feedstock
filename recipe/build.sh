@@ -2,6 +2,17 @@
 
 set -euxo pipefail
 
+# vala 0.56.17 (latest on conda-forge) can't parse the <doc:format/> element that
+# gobject-introspection >=1.86 writes into .gir files, so vapigen fails.
+# Build the .gir first, drop that purely informational element, then build the rest.
+# Remove once vala >=0.56.19 is available.
+build_with_vala_workaround() {
+  ninja -C "$1" -j${CPU_COUNT} libsecret/Secret-1.gir
+  sed -i.bak '/<doc:format /d' "$1/libsecret/Secret-1.gir"
+  rm "$1/libsecret/Secret-1.gir.bak"
+  ninja -C "$1" -j${CPU_COUNT}
+}
+
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == "1" ]]; then
   sed -i "/\[binaries\]/a\g-ir-scanner = '${BUILD_PREFIX}/bin/g-ir-scanner'" ${BUILD_PREFIX}/meson_cross_file.txt
   sed -i "/\[binaries\]/a\g-ir-compiler = '${BUILD_PREFIX}/bin/g-ir-compiler'" ${BUILD_PREFIX}/meson_cross_file.txt
@@ -41,7 +52,7 @@ EOF
     # This is loaded in the native build. We assume that the functions exported
     # by glib are the same for the native and cross builds
     export GI_CROSS_LAUNCHER=$BUILD_PREFIX/libexec/gi-cross-launcher-save.sh
-    ninja -C native-build -j ${CPU_COUNT}
+    build_with_vala_workaround native-build
     ninja -C native-build install -j ${CPU_COUNT}
   )
   export GI_CROSS_LAUNCHER=$BUILD_PREFIX/libexec/gi-cross-launcher-load.sh
@@ -54,5 +65,5 @@ meson setup builddir \
     --default-library=shared \
     ${MESON_ARGS}
 
-ninja -C builddir -j${CPU_COUNT}
+build_with_vala_workaround builddir
 ninja -C builddir install -j${CPU_COUNT}
