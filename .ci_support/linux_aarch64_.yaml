@@ -16,8 +16,6 @@ docker_image:
 - quay.io/condaforge/linux-anvil-aarch64:alma10
 glib:
 - '2'
-libsecret:
-- '0.21'
 target_platform:
 - linux-aarch64
 zlib:

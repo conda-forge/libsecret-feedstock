@@ -63,6 +63,14 @@ EOF
     ninja -C native-build install -j ${CPU_COUNT}
   )
   export GI_CROSS_LAUNCHER=$BUILD_PREFIX/libexec/gi-cross-launcher-load.sh
+else
+  # g-ir-scanner's shebang picks up the build env python, which may differ from the
+  # python that the host gobject-introspection (and its _giscanner extension) was built for.
+  cat << EOF > $SRC_DIR/gi_native_file.txt
+[binaries]
+g-ir-scanner = ['$PREFIX/bin/python', '$PREFIX/bin/g-ir-scanner']
+EOF
+  MESON_ARGS="${MESON_ARGS} --native-file=$SRC_DIR/gi_native_file.txt"
 fi
 
 meson setup builddir \
